@@ -13,6 +13,8 @@ public class TeamComparator extends Comparator{
     * @param awayTeam is the String name of the away team
     * @return result, which is a String stating which team is favored to win along with the calcualted odds. */
   
+  @SuppressWarnings("unchecked")
+  
   public String compare(String homeTeam, String awayTeam){
     int homeTeamTotalTalentScore = 0;
     int awayTeamTotalTalentScore = 0;
@@ -21,12 +23,16 @@ public class TeamComparator extends Comparator{
     ArrayList<String> awayTeamPlayers = t.getPlayersByTeam(awayTeam);
     
     for (String player: homeTeamPlayers){
-      int rank = t.getPlayerStat(player, "RANK");
+      ArrayList<String> playerStatArray = t.getPlayerStat(player, "RANK");
+      String stringRank = playerStatArray.get(0);
+      int rank = Integer.parseInt(stringRank);
       int playerTalentScore = 1 - rank;
       homeTeamTotalTalentScore += playerTalentScore;}
     
     for (String player: awayTeamPlayers){
-      int rank = t.getPlayerStat(player, "RANK");
+      ArrayList<String> playerStatArray = t.getPlayerStat(player, "RANK");
+      String stringRank = playerStatArray.get(0);
+      int rank = Integer.parseInt(stringRank);
       int playerTalentScore = 1 - rank;
       awayTeamTotalTalentScore += playerTalentScore;}
     
@@ -42,7 +48,7 @@ public class TeamComparator extends Comparator{
      homeTeamOdds = 99; 
     }
     
-    awayTeamOdds = 100 - homeTeamOdds;
+    int awayTeamOdds = 100 - homeTeamOdds;
     
     String favorite = "";
     int oddsDifference = homeTeamOdds - awayTeamOdds;
@@ -54,11 +60,12 @@ public class TeamComparator extends Comparator{
       favorite = homeTeam;}
     
     String result = "Likelihood of Winning" + "\n";
-    result += "-----------------------------------------";
+    result += "-----------------------------" + "\n";
     result += homeTeam + ": " + homeTeamOdds + " %" + "\n";
     result += awayTeam + ": " + awayTeamOdds + " %" + "\n"; 
     result += "The " + favorite + " are favored to win by " + oddsDifference + " %.";
     
+    System.out.print(result);
     return result;
     
   }
