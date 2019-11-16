@@ -59,7 +59,7 @@ Anthony Davis
 27.4
 6
 7
-Philadelphia 76Ers
+Philadelphia 76ers
 Joel Embiid
 24.3
 11.4
@@ -169,7 +169,7 @@ Draymond Green
 15.3
 17
 18
-Philadelphia 76Ers
+Philadelphia 76ers
 Al Horford
 14.1
 8.4
@@ -219,7 +219,7 @@ Bradley Beal
 17.2
 22
 23
-Philadelphia 76Ers
+Philadelphia 76ers
 Ben Simmons
 16.2
 8.3
@@ -479,7 +479,7 @@ Gary Harris
 13.7
 48
 49
-Philadelphia 76Ers
+Philadelphia 76ers
 Tobias Harris
 15.5
 6
@@ -699,7 +699,7 @@ Thaddeus Young
 16.3
 70
 71
-Philadelphia 76Ers
+Philadelphia 76ers
 Josh Richardson
 12.2
 3.2
