@@ -24,7 +24,7 @@
 */
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class TextReader {
    private String fileName; 
@@ -36,8 +36,8 @@ public class TextReader {
    }
    
    //Returns the players on a team that are also on the NBA Top 100 list
-   public ArrayList getPlayersByTeam(String team) {
-      ArrayList ans = new ArrayList();
+   public ArrayList<String> getPlayersByTeam(String team) {
+      ArrayList <String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -64,7 +64,7 @@ public class TextReader {
    
    //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
    public ArrayList getPlayerStat(String player, String statType) {
-      ArrayList ans = new ArrayList();
+      ArrayList <String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -152,7 +152,7 @@ public class TextReader {
    
    //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
    public ArrayList getStat(String statType) {
-      ArrayList ans = new ArrayList();
+      ArrayList <String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
