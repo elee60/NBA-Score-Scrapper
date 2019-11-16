@@ -1,8 +1,10 @@
+/** Class Comparator 
+  * Author: Kunal Singh Khurana */
+
 public abstract class Comparator{
   
   public Comparator(){}
   
-  public abstract String compare(String a, String b);
+  public abstract String compare(String name1, String name2);
   
-  public abstract String compare(String a, String b, String c);
 }

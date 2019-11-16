@@ -1,3 +1,5 @@
+/** class PlayerComparator 
+  * Author: Kunal Singh Khurana */
 import java.util.*;
 
 public class PlayerComparator extends Comparator{
@@ -16,12 +18,24 @@ public class PlayerComparator extends Comparator{
     double player1Stat = Double.parseDouble(player1Array.get(0));
     double player2Stat = Double.parseDouble(player2Array.get(0));
     
+    String statTypeWords = "";
+    
+    if (statCategory == "PPG"){
+      statTypeWords = "points per game";}
+    else if (statCategory == "APG"){
+      statTypeWords = "assists per game";}
+    else if (statCategory == "RPG"){
+      statTypeWords = "rebounds per game";}
+    else{
+      statTypeWords = statCategory;}
+      
+    
     if (player1Stat > player2Stat){
-      result += player1 + " averages more " + statCategory + " than " + player2 + ".";}
+      result += player1 + " averages more " + statTypeWords + " than " + player2 + ".";}
     else if (player2Stat > player1Stat){
-      result += player2 + " averages more " + statCategory + " than " + player1 + ".";}
+      result += player2 + " averages more " + statTypeWords + " than " + player1 + ".";}
     else if (player1Stat == player2Stat){
-      result += player1 + " and " + player2 + " average the same " + statCategory + ".";}
+      result += player1 + " and " + player2 + " average the same " + statTypeWords + ".";}
     System.out.println(result);
     return result;
 
@@ -41,5 +55,3 @@ public class PlayerComparator extends Comparator{
     System.out.print(result);
     return result; }
   }
-
-

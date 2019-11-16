@@ -1,4 +1,5 @@
-/** class TeamComparator is a concrete subclass of the abstract class Comparator.
+/** class TeamComparator (Author: Kunal Singh Khurana)
+  * Concrete subclass of the abstract class Comparator.
   * It implements the abstract method compare() */
 
 import java.util.*;
