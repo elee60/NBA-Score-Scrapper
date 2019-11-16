@@ -1,5 +1,4 @@
-/** Class Comparator 
-  * Author: Kunal Singh Khurana */
+// AUTHOR: KUNAL SINGH KHURANA
 
 public abstract class Comparator{
   

@@ -1,4 +1,8 @@
-/** class TeamComparator (Author: Kunal Singh Khurana)
+// AUTHOR: KUNAL SINGH KHURANA
+
+/** 
+ * class TeamComparator 
+  * Author: Kunal Singh Khurana
   * Concrete subclass of the abstract class Comparator.
   * It implements the abstract method compare() */
 

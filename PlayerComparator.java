@@ -1,5 +1,5 @@
-/** class PlayerComparator 
-  * Author: Kunal Singh Khurana */
+// AUTHOR: KUNAL SINGH KHURANA
+
 import java.util.*;
 
 public class PlayerComparator extends Comparator{

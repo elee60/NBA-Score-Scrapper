@@ -1,5 +1,6 @@
-/* class TextReader 
- * Author: Khai Nguyen
+// AUTHOR: KHAI NGUYEN
+
+/* 
  * This class is designed to open and read text documents. In the case of 
  * this project, the document being viewed contains the NBA Top 100 Players
  * and their respective statistics. Given that Java cannot view Excel 
