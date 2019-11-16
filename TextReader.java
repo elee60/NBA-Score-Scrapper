@@ -189,6 +189,11 @@ public class TextReader {
                   }
                   ans.add(reader.readLine());
                }  
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+               
                break;    
                      
             //If statistic type is specified to APG
@@ -205,6 +210,11 @@ public class TextReader {
                   }
                   ans.add(reader.readLine());
                }  
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+               
                break;    
                      
             //If statistic type is specified to FGP
@@ -221,7 +231,12 @@ public class TextReader {
                      reader.readLine();
                   }
                   ans.add(reader.readLine());
-               }  
+               } 
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+                
                break;    
                      
             //If statistic type is specified to FTP
@@ -240,6 +255,11 @@ public class TextReader {
                   }
                   ans.add(reader.readLine());
                }  
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+               
                break;    
                      
             //If statistic type is specified to PER
@@ -259,6 +279,11 @@ public class TextReader {
                   }
                   ans.add(reader.readLine());
                }  
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+               
                break;    
                      
             //If statistic type is specified to RANK
@@ -286,5 +311,21 @@ public class TextReader {
          System.out.println("ERROR: Cannot open file " + this.fileName);
          return null;
       }   
+   }
+      
+   public static void main(String [] args) {
+      TextReader text = new TextReader();
+      ArrayList<String> players = text.getPlayersByTeam("Los Angeles Lakers");
+      /*for(String player : players) {
+         System.out.println(player);
+         System.out.println(text.getPlayerStat(player, "RANK"));
+      }*/
+      System.out.println(text.getStat("RANK"));
+      System.out.println(text.getStat("PPG"));
+      System.out.println(text.getStat("RPG"));
+      System.out.println(text.getStat("APG"));
+      System.out.println(text.getStat("FGP"));
+      System.out.println(text.getStat("FTP"));
+      System.out.println(text.getStat("PER"));
    }
 }
