@@ -2,15 +2,19 @@ import java.util.*;
 
 public class PlayerComparator extends Comparator{
   
-  public PlayerComparator(){}
+  public PlayerComparator(){
+    super();
+  }
   
-  public void compare(String player1, String player2, String statCategory){
+  @SuppressWarnings("unchecked")
+  
+  public String compare(String player1, String player2, String statCategory){
     String result = "";
-    Textreader john = new TextReader();
-    ArrayList<String> player1Array = john.getPlayerStat(player1, statCategory);
-    ArrayList<String> player2Array = john.getPlayerStat(player2, statCategory);
+    TextReader t1 = new TextReader();
+    ArrayList<String> player1Array = t1.getPlayerStat(player1, statCategory);
+    ArrayList<String> player2Array = t1.getPlayerStat(player2, statCategory);
     double player1Stat = Double.parseDouble(player1Array.get(0));
-    double player2Stat = double.parseDouble(player2Array.get(0));
+    double player2Stat = Double.parseDouble(player2Array.get(0));
     
     if (player1Stat > player2Stat){
       result += player1 + " averages more " + statCategory + " than " + player2 + ".";}
@@ -18,10 +22,24 @@ public class PlayerComparator extends Comparator{
       result += player2 + " averages more " + statCategory + " than " + player1 + ".";}
     else if (player1Stat == player2Stat){
       result += player1 + " and " + player2 + " average the same " + statCategory + ".";}
-    
+    System.out.println(result);
     return result;
 
     }
     
   
+  public String compare(String player1, String player2){
+    String pointsComparison = this.compare(player1, player2, "PPG");
+    String reboundsComparison = this.compare(player1, player2, "RPG");
+    String assistsComparison = this.compare(player1, player2, "APG");
+    String fieldGoalComparison = this.compare(player1, player2, "FGP");
+    String freeThrowComparison = this.compare(player1, player2, "FTP");
+    String pERComparison = this.compare(player1, player2, "PER");
+    //Include overall rank comparison via getRank() method
+    
+    String result = pointsComparison + "\n" + reboundsComparison + "\n" + assistsComparison + "\n" + fieldGoalComparison + "\n" + freeThrowComparison + "\n" + pERComparison;
+    System.out.print(result);
+    return result; }
   }
+
+
