@@ -150,12 +150,141 @@ public class TextReader {
       }   
    }
    
-   public static void main(String [] args) {
-      TextReader text = new TextReader();
-      ArrayList<String> players = text.getPlayersByTeam("Los Angeles Lakers");
-      for(String player : players) {
-         System.out.println(player);
-         System.out.println(text.getPlayerStat(player, "RANK"));
+   //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
+   public ArrayList getStat(String statType) {
+      ArrayList ans = new ArrayList();
+      try {
+         //Java imported reader of text documents
+         BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
+              
+         switch(statType) {
+            //If statistic type is specified to PPG
+            case "PPG":
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+               break;    
+                  
+            //If statistic type is specified to RPG
+            case "RPG":
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               break;    
+                     
+            //If statistic type is specified to APG
+            case "APG":
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               break;    
+                     
+            //If statistic type is specified to FGP
+            case "FGP":
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               break;    
+                     
+            //If statistic type is specified to FTP
+            case "FTP":
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               break;    
+                     
+            //If statistic type is specified to PER
+            case "PER":
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               break;    
+                     
+            //If statistic type is specified to RANK
+            case "RANK":
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }  
+               break;      
+            
+            //If statistic type is unknown
+            default:
+               break;
+         }
+      
+         //Closes Java reader to prevent data overflow
+         reader.close();
+         return ans;
       }
+      
+      //If error in opening text document catch
+      catch (Exception e) {
+         System.out.println("ERROR: Cannot open file " + this.fileName);
+         return null;
+      }   
    }
 }
