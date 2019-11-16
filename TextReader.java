@@ -118,6 +118,17 @@ public class TextReader {
                      ans.add(reader.readLine());
                      break;
                      
+                  //If statistic type is specified to RANK
+                  case "RANK":
+                     reader.readLine();
+                     reader.readLine();
+                     reader.readLine();
+                     reader.readLine();
+                     reader.readLine();
+                     reader.readLine();
+                     ans.add(reader.readLine());
+                     break;
+                                          
                   //If statistic type is unknown
                   default:
                      for(int i = 0; i <= 5; i++) {
@@ -126,7 +137,7 @@ public class TextReader {
                }           
             }
          }
-
+      
          //Closes Java reader to prevent data overflow
          reader.close();
          return ans;
@@ -137,5 +148,14 @@ public class TextReader {
          System.out.println("ERROR: Cannot open file " + this.fileName);
          return null;
       }   
+   }
+   
+   public static void main(String [] args) {
+      TextReader text = new TextReader();
+      ArrayList<String> players = text.getPlayersByTeam("Los Angeles Lakers");
+      for(String player : players) {
+         System.out.println(player);
+         System.out.println(text.getPlayerStat(player, "RANK"));
+      }
    }
 }
