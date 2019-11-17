@@ -1,5 +1,3 @@
-// AUTHOR: LOGAN FRANCE
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,7 +13,7 @@ import java.awt.event.ActionEvent;
 
 public class talentEvaluatorForm {
 
-	private JFrame frame;
+	private JFrame frmNbaTextEvaluator;
 
 	/**
 	 * Launch the application.
@@ -25,7 +23,7 @@ public class talentEvaluatorForm {
 			public void run() {
 				try {
 					talentEvaluatorForm window = new talentEvaluatorForm();
-					window.frame.setVisible(true);
+					window.frmNbaTextEvaluator.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,14 +42,15 @@ public class talentEvaluatorForm {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setName("");
-		frame.setPreferredSize(new Dimension(816, 489));
-		frame.setSize(new Dimension(816, 489));
-		frame.setBounds(100, 100, 555, 380);
-		frame.setSize(816, 489);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmNbaTextEvaluator = new JFrame();
+		frmNbaTextEvaluator.setTitle("NBA Text Evaluator");
+		frmNbaTextEvaluator.getContentPane().setName("");
+		frmNbaTextEvaluator.setPreferredSize(new Dimension(816, 489));
+		frmNbaTextEvaluator.setSize(new Dimension(816, 489));
+		frmNbaTextEvaluator.setBounds(100, 100, 555, 380);
+		frmNbaTextEvaluator.setSize(816, 489);
+		frmNbaTextEvaluator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmNbaTextEvaluator.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setToolTipText("NBA Talent Evaluator");
@@ -60,7 +59,7 @@ public class talentEvaluatorForm {
 		panel.setLocation(new Point(0, 0));
 		panel.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 48));
 		
-		frame.getContentPane().add(panel);
+		frmNbaTextEvaluator.getContentPane().add(panel);
 		
 		JLabel lblNbaTextEvaluator = new JLabel("NBA TEXT EVALUATOR");
 		lblNbaTextEvaluator.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 48));
@@ -72,7 +71,7 @@ public class talentEvaluatorForm {
 		btnAnalyzeTeam.setSize(new Dimension(231, 76));
 		btnAnalyzeTeam.setLocation(new Point(81, 159));
 		btnAnalyzeTeam.setBounds(75, 137, 231, 76);
-		frame.getContentPane().add(btnAnalyzeTeam);
+		frmNbaTextEvaluator.getContentPane().add(btnAnalyzeTeam);
 		
 		JButton btnAnalyzePlayer = new JButton("Analyze Player");
 		btnAnalyzePlayer.setSize(new Dimension(231, 76));
@@ -80,7 +79,7 @@ public class talentEvaluatorForm {
 		btnAnalyzePlayer.setLocation(new Point(81, 159));
 		btnAnalyzePlayer.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 29));
 		btnAnalyzePlayer.setBounds(413, 137, 231, 76);
-		frame.getContentPane().add(btnAnalyzePlayer);
+		frmNbaTextEvaluator.getContentPane().add(btnAnalyzePlayer);
 		
 		JButton btnCompareTeam = new JButton("Compare Team");
 		btnCompareTeam.setSize(new Dimension(231, 76));
@@ -88,7 +87,7 @@ public class talentEvaluatorForm {
 		btnCompareTeam.setLocation(new Point(81, 159));
 		btnCompareTeam.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 28));
 		btnCompareTeam.setBounds(75, 278, 231, 76);
-		frame.getContentPane().add(btnCompareTeam);
+		frmNbaTextEvaluator.getContentPane().add(btnCompareTeam);
 		
 		JButton btnComparePlayer = new JButton("Compare Player");
 		btnComparePlayer.setSize(new Dimension(231, 76));
@@ -96,6 +95,6 @@ public class talentEvaluatorForm {
 		btnComparePlayer.setLocation(new Point(81, 159));
 		btnComparePlayer.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 27));
 		btnComparePlayer.setBounds(413, 278, 231, 76);
-		frame.getContentPane().add(btnComparePlayer);
+		frmNbaTextEvaluator.getContentPane().add(btnComparePlayer);
 	}
 }
