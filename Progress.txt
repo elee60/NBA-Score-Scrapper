@@ -4,7 +4,8 @@ Kunal Khurana (Project Leader), Khai Nguyen, Logan France, Emma Lee
 
 The goal of this project was to devise a software application capable of quantitatively assessing and comparing the talent of an NBA roster. 
 Performance data of the top 100 players in the league was compiled into an excel spreadsheet and then converted to txt format. 
-Data was "read" into the program via the TextReader class and then processed in four different classes, depending on the specific type of analysis being performed. 
+Data was "read" into the program via the TextReader class and then processed in four different classes, 
+- depending on the specific type of analysis being performed. 
 Two abstract classes, Comparator and Evaluator, were constructed. These two abstract classes were extended by 4 concrete classes:
 TeamComparator, PlayerComparator, TeamEvaluator, and PlayerEvaluator, which implement an inherited abstract method. 
 The abstract method is either evaluate() or compare() (see "Inheritance Hierarchy" PDF). 
