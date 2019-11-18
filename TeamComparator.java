@@ -17,7 +17,7 @@ public class TeamComparator extends Comparator{
     * @param homeTeam is the String name of the home team
     * @param awayTeam is the String name of the away team
     * @return result, which is a String stating which team is favored to win along with the calcualted odds. 
-    * Each player's talent score is 101 - their rank. 
+    * Each player's talent score is 101 minus their rank. 
     * Sum the talent scores, determine which team has a higher overall talent score, and use proportions to find odds.
     */
   
