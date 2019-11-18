@@ -1,3 +1,5 @@
+// AUTHOR: LOGAN FRANCE
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
