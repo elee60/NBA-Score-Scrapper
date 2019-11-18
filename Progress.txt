@@ -13,8 +13,9 @@ The implementation of these abstract methods provide return types that are eithe
 A Graphical User Interface (GUI) was constructed to display the data in a visually appealing way. 
 The author of each document is listed at the very top of the text file when you click on it.
 
-Note to Dr. Mengistu: If you would like to test out our code to get an idea of what kind of output some of our methods produce, open the following java files. 
-Make sure the txt file containing the player data is in the same directory.
+Note to Dr. Mengistu: If you would like to test out our code to get an idea of what kind of output some of our methods produce: 
+Open the following 4 java files. 
+(Make sure the txt file containing the player data is in the same directory.)
 
 TextReader.java
 Comparator.java
