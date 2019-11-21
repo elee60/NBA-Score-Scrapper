@@ -1,4 +1,3 @@
-// AUTHOR: KHAI NGUYEN
 import java.util.ArrayList;
 
 public class TeamEvaluator extends Evaluator {

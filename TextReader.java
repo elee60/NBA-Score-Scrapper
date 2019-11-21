@@ -1,7 +1,4 @@
-// AUTHOR: KHAI NGUYEN
-
-/* 
- * This class is designed to open and read text documents. In the case of 
+/* This class is designed to open and read text documents. In the case of 
  * this project, the document being viewed contains the NBA Top 100 Players
  * and their respective statistics. Given that Java cannot view Excel 
  * spreadsheets without additional plugins such as Apache POI, the data has
@@ -27,7 +24,7 @@
 */
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
 
 public class TextReader {
    private String fileName; 
@@ -39,8 +36,8 @@ public class TextReader {
    }
    
    //Returns the players on a team that are also on the NBA Top 100 list
-   public ArrayList<String> getPlayersByTeam(String team) {
-      ArrayList <String> ans = new ArrayList<String>();
+   public ArrayList getPlayersByTeam(String team) {
+      ArrayList ans = new ArrayList();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -67,7 +64,7 @@ public class TextReader {
    
    //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
    public ArrayList getPlayerStat(String player, String statType) {
-      ArrayList <String> ans = new ArrayList<String>();
+      ArrayList ans = new ArrayList();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -153,14 +150,31 @@ public class TextReader {
       }   
    }
    
-   //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
+   //Return all stats of a certain type
    public ArrayList getStat(String statType) {
-      ArrayList <String> ans = new ArrayList<String>();
+      ArrayList ans = new ArrayList();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
               
          switch(statType) {
+            //If player is specified
+            case "PLAYER":
+               reader.readLine();
+               reader.readLine();
+               ans.add(reader.readLine());
+               while((line = reader.readLine()) != null) {
+                  for(int i = 0; i <=7; i++) {
+                     reader.readLine();
+                  }
+                  ans.add(reader.readLine());
+               }
+               
+               if(ans.size() > 100) {
+                  ans.remove(ans.size() - 1);
+               }
+               break;
+         
             //If statistic type is specified to PPG
             case "PPG":
                reader.readLine();
@@ -323,6 +337,7 @@ public class TextReader {
          System.out.println(player);
          System.out.println(text.getPlayerStat(player, "RANK"));
       }*/
+      System.out.println(text.getStat("PLAYER"));
       System.out.println(text.getStat("RANK"));
       System.out.println(text.getStat("PPG"));
       System.out.println(text.getStat("RPG"));
