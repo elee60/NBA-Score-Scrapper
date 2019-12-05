@@ -13,7 +13,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class ComparePlayersForm {
 
@@ -108,23 +111,43 @@ public class ComparePlayersForm {
 		lblStat.setBounds(22, 149, 150, 14);
 		frmComparePlayers.getContentPane().add(lblStat);
 		
-		JLabel lblTheBetterPlayer = new JLabel("The better player is");
-		lblTheBetterPlayer.setVerticalAlignment(SwingConstants.TOP);
-		lblTheBetterPlayer.setVisible(false);
-		lblTheBetterPlayer.setBounds(10, 187, 574, 133);
-		frmComparePlayers.getContentPane().add(lblTheBetterPlayer);
+		JTextArea txtrTheBetterPlayer = new JTextArea();
+		txtrTheBetterPlayer.setEditable(false);
+		txtrTheBetterPlayer.setBounds(10, 188, 574, 172);
+		frmComparePlayers.getContentPane().add(txtrTheBetterPlayer);
 		
 		JButton btnComparePlayers = new JButton("Compare Players");
 		btnComparePlayers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				playerComparator((String)comboBoxPlayer1.getSelectedItem(), (String)comboBoxPlayer2.getSelectedItem(), (String)comboBoxStats.getSelectedItem(),lblTheBetterPlayer);
+				playerComparator((String)comboBoxPlayer1.getSelectedItem(), (String)comboBoxPlayer2.getSelectedItem(), (String)comboBoxStats.getSelectedItem(),txtrTheBetterPlayer);
 			}
 		});
 		btnComparePlayers.setBounds(444, 83, 140, 23);
 		frmComparePlayers.getContentPane().add(btnComparePlayers);
+		
+		JButton btnReturnToMain = new JButton("Return to Main Menu");
+		btnReturnToMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					talentEvaluatorForm tef = new talentEvaluatorForm();
+					tef.main(null);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				frmComparePlayers.dispose();
+			}
+		});
+		btnReturnToMain.setBounds(444, 114, 140, 23);
+		frmComparePlayers.getContentPane().add(btnReturnToMain);
+		
+
 	}
 	
-	private void playerComparator(String player1, String player2, String stat,JLabel label) {
+	private void playerComparator(String player1, String player2, String stat,JTextArea label) {
 		if(!label.isVisible())
 			label.setVisible(true);
 		if(player1.equals(player2)) {

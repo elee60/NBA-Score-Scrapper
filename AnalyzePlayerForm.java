@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.awt.Component;
 import javax.swing.SwingConstants;
@@ -116,6 +117,26 @@ public class AnalyzePlayerForm {
 		});
 		btnSeeTeamStats.setBounds(298, 102, 146, 23);
 		frmAnalyzeTeam.getContentPane().add(btnSeeTeamStats);
+		
+		JButton btnReturnToMain = new JButton("Return to Main Menu");
+		btnReturnToMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					talentEvaluatorForm tef = new talentEvaluatorForm();
+					tef.main(null);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				frmAnalyzeTeam.dispose();
+			}
+		});
+		btnReturnToMain.setBounds(614, 82, 176, 23);
+		frmAnalyzeTeam.getContentPane().add(btnReturnToMain);
 		
 
 		

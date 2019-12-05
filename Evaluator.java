@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
 public abstract class Evaluator {
-   public abstract ArrayList evaluate(String name);
+	@SuppressWarnings("rawtypes")
+	public abstract ArrayList evaluate(String name);
 }
