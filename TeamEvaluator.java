@@ -16,6 +16,7 @@ public class TeamEvaluator extends Evaluator {
       ArrayList<String> players = new ArrayList<String>();
       players = reader.getPlayersByTeam(team);  //Get all players on given team
       
+      /*
       //Loop through each player on team in the NBA Top 100
       for(String player : players) {
          //Create temp ArrayList to be added to answer array
@@ -27,7 +28,18 @@ public class TeamEvaluator extends Evaluator {
             temp.add(stat);
          }
          ans.add(temp);
+      }*/
+      //return ans;
+      
+      for(String player : players) {
+         ArrayList temp = new ArrayList();
+         temp.add(player);
+         for(Object stat : reader.getPlayerStat(player, "RANK")) {
+            temp.add(stat);
+         }
+         ans.add(temp);
       }
+      
       return ans;
    }
    
