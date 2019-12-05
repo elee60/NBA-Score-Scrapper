@@ -1,6 +1,3 @@
-
-// AUTHOR: LOGAN FRANCE
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -46,7 +43,7 @@ public class talentEvaluatorForm {
 	 */
 	private void initialize() {
 		frmNbaTextEvaluator = new JFrame();
-		frmNbaTextEvaluator.setTitle("NBA Text Evaluator");
+		frmNbaTextEvaluator.setTitle("NBA Talent Evaluator");
 		frmNbaTextEvaluator.getContentPane().setName("");
 		frmNbaTextEvaluator.setPreferredSize(new Dimension(816, 489));
 		frmNbaTextEvaluator.setSize(new Dimension(816, 489));
@@ -64,7 +61,7 @@ public class talentEvaluatorForm {
 		
 		frmNbaTextEvaluator.getContentPane().add(panel);
 		
-		JLabel lblNbaTextEvaluator = new JLabel("NBA TEXT EVALUATOR");
+		JLabel lblNbaTextEvaluator = new JLabel("NBA TALENT EVALUATOR");
 		lblNbaTextEvaluator.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 48));
 		panel.add(lblNbaTextEvaluator);
 		

@@ -31,15 +31,15 @@ public class TeamComparator extends Comparator{
     ArrayList<String> awayTeamPlayers = t.getPlayersByTeam(awayTeam);
     
     for (String player: homeTeamPlayers){
-      ArrayList<String> playerStatArray = t.getPlayerStat(player, "RANK");
-      String stringRank = playerStatArray.get(0);
+      //ArrayList<String> playerStatArray = t.getPlayerStat(player, "RANK");
+      String stringRank = t.getPlayerStat(player, "RANK"); //= playerStatArray.get(0);
       int rank = Integer.parseInt(stringRank);
       int playerTalentScore = 1 - rank;
       homeTeamTotalTalentScore += playerTalentScore;}
     
     for (String player: awayTeamPlayers){
-      ArrayList<String> playerStatArray = t.getPlayerStat(player, "RANK");
-      String stringRank = playerStatArray.get(0);
+      /*ArrayList<String>*/String playerStatArray = t.getPlayerStat(player, "RANK");
+      String stringRank = playerStatArray;//playerStatArray.get(0);
       int rank = Integer.parseInt(stringRank);
       int playerTalentScore = 1 - rank;
       awayTeamTotalTalentScore += playerTalentScore;}

@@ -1,9 +1,8 @@
-// AUTHOR: KUNAL SINGH KHURANA
 
-public abstract class Comparator{
-  
-  public Comparator(){}
-  
-  public abstract String compare(String name1, String name2);
-  
+public abstract class Comparator {
+
+	  public Comparator(){}
+	  
+	  public abstract String compare(String name1, String name2);
+	  
 }

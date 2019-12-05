@@ -23,7 +23,7 @@ public class TeamEvaluator extends Evaluator {
          temp.add(player);
          
          //Add each statistic type to temp array
-         for(Object stat : reader.getPlayerStat(player, "")) {
+         for(Object stat : reader.getAllPlayerStats(player)) {
             temp.add(stat);
          }
          ans.add(temp);
