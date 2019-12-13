@@ -8,18 +8,20 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class CompareTeamForm {
 
 	private JFrame frame;
-	private TextReader tr;
+	//private TextReader tr;
 	private TeamComparator tc;
 	/**
 	 * Launch the application.
@@ -39,39 +41,40 @@ public class CompareTeamForm {
 
 	/**
 	 * Create the application.
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public CompareTeamForm() throws FileNotFoundException {
+	public CompareTeamForm() throws IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	private void initialize() throws FileNotFoundException {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 707, 441);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		tr = new TextReader();
+		//tr = new TextReader();
 		tc = new TeamComparator();
 		
 		JLabel lblTeamComparator = new JLabel("Team Comparator");
+		lblTeamComparator.setForeground(Color.BLUE);
 		lblTeamComparator.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 40));
 		lblTeamComparator.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTeamComparator.setBounds(10, 11, 671, 60);
 		frame.getContentPane().add(lblTeamComparator);
 		
-		JComboBox comboBoxTeam1 = new JComboBox();
-		comboBoxTeam1.setModel(new DefaultComboBoxModel(addTeamNames(comboBoxTeam1)));
-		comboBoxTeam1.setBounds(50, 93, 170, 20);
+		JComboBox<String> comboBoxTeam1 = new JComboBox<String>();
+		comboBoxTeam1.setModel(new DefaultComboBoxModel<String>(addTeamNames(comboBoxTeam1)));
+		comboBoxTeam1.setBounds(113, 99, 170, 20);
 		frame.getContentPane().add(comboBoxTeam1);
 		
-		JComboBox comboBoxTeam2 = new JComboBox();
-		comboBoxTeam2.setModel(new DefaultComboBoxModel(addTeamNames(comboBoxTeam2)));
-		comboBoxTeam2.setBounds(50, 156, 170, 20);
+		JComboBox<String> comboBoxTeam2 = new JComboBox<String>();
+		comboBoxTeam2.setModel(new DefaultComboBoxModel<String>(addTeamNames(comboBoxTeam2)));
+		comboBoxTeam2.setBounds(113, 147, 170, 20);
 		frame.getContentPane().add(comboBoxTeam2);
 		
 		JTextArea txtrTheWinningTeam = new JTextArea();
@@ -81,16 +84,19 @@ public class CompareTeamForm {
 		frame.getContentPane().add(txtrTheWinningTeam);
 		
 		JButton btnCompareTeams = new JButton("Compare Teams");
+		btnCompareTeams.setForeground(Color.RED);
 		btnCompareTeams.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				compareTeams(txtrTheWinningTeam, (String)comboBoxTeam1.getSelectedItem(),(String)comboBoxTeam2.getSelectedItem());
 			}
 		});
-		btnCompareTeams.setBounds(271, 92, 170, 23);
+		btnCompareTeams.setBounds(325, 92, 170, 23);
 		frame.getContentPane().add(btnCompareTeams);
 		
 		JButton btnReturnToMain = new JButton("Return to Main Menu");
+		btnReturnToMain.setForeground(Color.RED);
 		btnReturnToMain.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					talentEvaluatorForm tef = new talentEvaluatorForm();
@@ -102,8 +108,16 @@ public class CompareTeamForm {
 				frame.dispose();
 			}
 		});
-		btnReturnToMain.setBounds(472, 92, 170, 23);
+		btnReturnToMain.setBounds(505, 92, 170, 23);
 		frame.getContentPane().add(btnReturnToMain);
+		
+		JLabel lblHomeTeam = new JLabel("Home Team");
+		lblHomeTeam.setBounds(30, 93, 115, 33);
+		frame.getContentPane().add(lblHomeTeam);
+		
+		JLabel lblAwayTeam = new JLabel("Away Team");
+		lblAwayTeam.setBounds(30, 141, 115, 33);
+		frame.getContentPane().add(lblAwayTeam);
 		
 
 	}
@@ -117,26 +131,30 @@ public class CompareTeamForm {
 			text.setText("These are the same team!");
 			return;
 		}
-		//text.setText("");
 		text.setText(tc.compare(team1, team2));
 		
 	}
 	
-	private Object[] addTeamNames(JComboBox comboBox) throws FileNotFoundException {
+	private String[] addTeamNames(JComboBox<String> comboBox) throws IOException {
 		Scanner scan = new Scanner(new FileReader("src/NBATeamNames.txt"));
-		
-		ArrayList tNames = new ArrayList();
+		FileWriter fw = new FileWriter(new File("src/NBATeamNames2.txt"));
+		ArrayList<String> tNames = new ArrayList<String>();
 		while(scan.hasNextLine()) {
-			Object teamName = scan.nextLine();
+			String teamName = scan.nextLine();
 			if(!tNames.contains(teamName))
+			{
 				tNames.add(teamName);
+				fw.write(teamName+"\n");
+			}
 		}
-		Object[] names = new Object[tNames.size()];
+		String[] names = new String[tNames.size()];
 		int count = 0;
-		for(Object o : tNames) {
-			names[count] = o;
+		for(String s : tNames) {
+			names[count] = s;
 			count++;
 		}
+		scan.close();
+		fw.close();
 		return names;
 	}
 }

@@ -68,20 +68,21 @@ public class ComparePlayersForm {
 		pc = new PlayerComparator();
 		
 		JLabel lblPlayerComparator = new JLabel("Player Comparator");
+		lblPlayerComparator.setForeground(Color.BLUE);
 		lblPlayerComparator.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerComparator.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 30));
 		lblPlayerComparator.setBounds(10, 11, 574, 48);
 		frmComparePlayers.getContentPane().add(lblPlayerComparator);
 		
-		JComboBox comboBoxPlayer1 = new JComboBox();
-		comboBoxPlayer1.setModel(new DefaultComboBoxModel(addPlayerNames(comboBoxPlayer1)));
+		JComboBox<String> comboBoxPlayer1 = new JComboBox<String>();
+		comboBoxPlayer1.setModel(new DefaultComboBoxModel<String>(addPlayerNames(comboBoxPlayer1)));
 		comboBoxPlayer1.setBounds(182, 84, 192, 20);
 		frmComparePlayers.getContentPane().add(comboBoxPlayer1);
 		
-		JComboBox comboBoxPlayer2 = new JComboBox();
-		comboBoxPlayer2.setModel(new DefaultComboBoxModel(addPlayerNames(comboBoxPlayer2)));
+		JComboBox<String> comboBoxPlayer2 = new JComboBox<String>();
+		comboBoxPlayer2.setModel(new DefaultComboBoxModel<String>(addPlayerNames(comboBoxPlayer2)));
 		comboBoxPlayer2.setBounds(182, 115, 192, 20);
-		frmComparePlayers.getContentPane().add(comboBoxPlayer2);
+		frmComparePlayers.getContentPane().add(comboBoxPlayer2); 
 		
 
 		
@@ -94,8 +95,8 @@ public class ComparePlayersForm {
 		 * Average Player Efficiency Rating (PER)
 		 * */
 		
-		JComboBox comboBoxStats = new JComboBox();
-		comboBoxStats.setModel(new DefaultComboBoxModel(new String[] {"Average Points Per Game (PPG)", "Average Rebounds Per Game (RPG)", "Average Assists Per Game (APG)", "Average Field Goal Percentage (FGP)", "Average Free Throw Percentage (FTP)", "Average Player Efficiency Rating (PER)", "All Stats"}));
+		JComboBox<String> comboBoxStats = new JComboBox<String>();
+		comboBoxStats.setModel(new DefaultComboBoxModel<String>(new String[] {"Average Points Per Game (PPG)", "Average Rebounds Per Game (RPG)", "Average Assists Per Game (APG)", "Average Field Goal Percentage (FGP)", "Average Free Throw Percentage (FTP)", "Average Player Efficiency Rating (PER)", "All Stats"}));
 		comboBoxStats.setBounds(182, 146, 192, 20);
 		frmComparePlayers.getContentPane().add(comboBoxStats);
 		
@@ -122,11 +123,13 @@ public class ComparePlayersForm {
 				playerComparator((String)comboBoxPlayer1.getSelectedItem(), (String)comboBoxPlayer2.getSelectedItem(), (String)comboBoxStats.getSelectedItem(),txtrTheBetterPlayer);
 			}
 		});
+		btnComparePlayers.setForeground(Color.RED);
 		btnComparePlayers.setBounds(444, 83, 140, 23);
 		frmComparePlayers.getContentPane().add(btnComparePlayers);
 		
 		JButton btnReturnToMain = new JButton("Return to Main Menu");
 		btnReturnToMain.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					talentEvaluatorForm tef = new talentEvaluatorForm();
@@ -141,6 +144,7 @@ public class ComparePlayersForm {
 				frmComparePlayers.dispose();
 			}
 		});
+		btnReturnToMain.setForeground(Color.RED);
 		btnReturnToMain.setBounds(444, 114, 140, 23);
 		frmComparePlayers.getContentPane().add(btnReturnToMain);
 		
@@ -185,11 +189,11 @@ public class ComparePlayersForm {
 			
 	}
 	
-	private Object[] addPlayerNames(JComboBox comboBox) {
-		ArrayList pNames = tr.getStat("PLAYER");
-		Object[] names = new Object[pNames.size()];
+	private String[] addPlayerNames(JComboBox<String> comboBox) {
+		ArrayList<String> pNames = tr.getStat("PLAYER");
+		String[] names = new String[pNames.size()];
 		int count = 0;
-		for(Object o : pNames) {
+		for(String o : pNames) {
 			names[count] = o;
 			count++;
 		}

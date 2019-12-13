@@ -32,14 +32,12 @@ public class TextReader {
    
    //Default TextReader constructor contains file name of where data is stored
    public TextReader() {
-      //fileName = "NBATop100 - File Reader Format.txt";
-	   fileName = "C:\\Users\\logan\\eclipse-workspace\\FinalProject\\src/NBATop100 - File Reader Format.txt";
+	   fileName = "src/NBATop100 - File Reader Format.txt";
    }
    
    //Returns the players on a team that are also on the NBA Top 100 list
-   @SuppressWarnings({ "unchecked", "rawtypes" })
-   public ArrayList getPlayersByTeam(String team) {
-      ArrayList ans = new ArrayList();
+   public ArrayList<String> getPlayersByTeam(String team) {
+      ArrayList<String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -63,7 +61,7 @@ public class TextReader {
    }
    
    //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
-   @SuppressWarnings({ "rawtypes", "unchecked" })
+   
    public String getPlayerStat(String player, String statType) {
       String ans = "";
       try {
@@ -151,8 +149,8 @@ public class TextReader {
       }   
    }
    
-   public ArrayList getAllPlayerStats(String player) {
-	   ArrayList stats = new ArrayList();
+   public ArrayList<String> getAllPlayerStats(String player) {
+	   ArrayList<String> stats = new ArrayList<String>();
 	      try {
 	         //Java imported reader of text documents
 	         BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -179,9 +177,8 @@ public class TextReader {
    }
    
    //Return all stats of a certain type
-   @SuppressWarnings({ "rawtypes", "unchecked" })
-   public ArrayList getStat(String statType) {
-      ArrayList ans = new ArrayList();
+   public ArrayList<String> getStat(String statType) {
+      ArrayList<String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -359,56 +356,13 @@ public class TextReader {
          return null;
       }   
    }
-   
-   public void printAllPlayerStats(String player) {
-	   
-       System.out.println(getPlayerStat(player, "RANK"));
-       System.out.println(getPlayerStat(player, "PPG"));
-       System.out.println(getPlayerStat(player, "RPG"));
-       System.out.println(getPlayerStat(player, "APG"));
-       System.out.println(getPlayerStat(player, "FGP"));
-       System.out.println(getPlayerStat(player, "FTP"));
-       System.out.println(getPlayerStat(player, "PER"));
-   }
-   
-   @SuppressWarnings({ "unchecked", "rawtypes" })
-public ArrayList returnAllPlayerStats(String player) {
-	   ArrayList playerStats = new ArrayList();
-	   playerStats.add(getPlayerStat(player, "RANK"));
-	   playerStats.add(getPlayerStat(player, "PPG"));
-	   playerStats.add(getPlayerStat(player, "RPG"));
-	   playerStats.add(getPlayerStat(player, "APG"));
-	   playerStats.add(getPlayerStat(player, "FGP"));
-	   playerStats.add(getPlayerStat(player, "FTP"));
-	   playerStats.add(getPlayerStat(player, "PER"));
-	   return playerStats;
-   }
       
-   @SuppressWarnings("unchecked")
    public static void main(String [] args) {
       TextReader text = new TextReader();
       ArrayList<String> players = text.getPlayersByTeam("Los Angeles Lakers");
       for(String player : players) {
          System.out.println(player);
          System.out.println(text.getPlayerStat(player,"FART"));
-         
-         //text.printAllPlayerStats(player);
-         
-         /*System.out.println(text.getPlayerStat(player, "RANK"));
-         System.out.println(text.getPlayerStat(player, "PPG"));
-         System.out.println(text.getPlayerStat(player, "RPG"));
-         System.out.println(text.getPlayerStat(player, "APG"));
-         System.out.println(text.getPlayerStat(player, "FGP"));
-         System.out.println(text.getPlayerStat(player, "FTP"));
-         System.out.println(text.getPlayerStat(player, "PER"));*/
       }
-      /*System.out.println(text.getStat("PLAYER"));
-      System.out.println(text.getStat("RANK"));
-      System.out.println(text.getStat("PPG"));
-      System.out.println(text.getStat("RPG"));
-      System.out.println(text.getStat("APG"));
-      System.out.println(text.getStat("FGP"));
-      System.out.println(text.getStat("FTP"));
-      System.out.println(text.getStat("PER"));*/
    }
 }
