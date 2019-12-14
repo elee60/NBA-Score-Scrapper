@@ -362,7 +362,7 @@ public class TextReader {
       ArrayList<String> players = text.getPlayersByTeam("Los Angeles Lakers");
       for(String player : players) {
          System.out.println(player);
-         System.out.println(text.getPlayerStat(player,"FART"));
+         System.out.println(text.getPlayerStat(player,""));
       }
    }
 }

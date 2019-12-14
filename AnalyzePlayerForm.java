@@ -188,11 +188,40 @@ public class AnalyzePlayerForm {
 		}
 		return names;
 	}
-	
+	//Giannis
+	//Nikola
 	private void playerImageSet(JLabel lblPicture, String playerName) {
-		Image img = new ImageIcon(this.getClass().getResource("\\Players/"+playerName+".png")).getImage();
-		//Image img = new ImageIcon(this.getClass().getResource("\\Players/Anthony Davis.png")).getImage();
-		Image newImage = img.getScaledInstance(lblPicture.getWidth(), lblPicture.getHeight(), Image.SCALE_DEFAULT);
+		Image img;
+		Image newImage;
+		switch(playerName) {
+		case "Nikola Jokić":
+			playerName = "1";
+			break;
+		case "Luka Dončić":
+			playerName = "2";
+			break;
+		case "Nikola Vucevic":
+			playerName = "3";
+			break;
+		case "Bojan Bogdanović":
+			playerName = "4";
+			break;
+		case "Jusuf Nurkić":
+			playerName = "5";
+			break;
+		case "Jonas Valančiūnas":
+			playerName = "6";
+			break;
+		}
+		if("123456".contains(playerName)) {
+			img = new ImageIcon(this.getClass().getResource("\\Players\\Special/"+playerName+".png")).getImage();
+		}
+		else {
+			img = new ImageIcon(this.getClass().getResource("\\Players/"+playerName+".png")).getImage();
+		}
+		
+		newImage = img.getScaledInstance(lblPicture.getWidth(), lblPicture.getHeight(), Image.SCALE_DEFAULT);
 		lblPicture.setIcon(new ImageIcon(newImage));
+		
 	}
 }
