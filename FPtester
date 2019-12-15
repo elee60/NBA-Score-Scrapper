@@ -1,0 +1,425 @@
+//author: Emma Lee
+
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.util.ArrayList;
+
+public class FPtester {
+    public static void main(String args[]) {
+        org.junit.runner.JUnitCore.main("FPtester");
+
+    }
+
+
+    //Instances of each class that will be tested is created for the below test cases
+    TextReader text = new TextReader();
+    PlayerEvaluator playerEvaluator = new PlayerEvaluator();
+    PlayerComparator comparator = new PlayerComparator();
+    TeamEvaluator teamEvaluator = new TeamEvaluator();
+    TeamComparator teamComparator = new TeamComparator();
+
+    /* This is the TextReader testing portion of the testing file.
+        These tests will test each of the methods with various inputs and make sure that all
+        instances and circumstances are accounted for when it comes to this specific aspect of the
+        test.
+     */
+    @Test
+    public void testGETPLAYERSBYTEAM() {
+        ArrayList<String> ans = new ArrayList<String>();
+        ans.add("Pascal Siakam");
+        ans.add("Kyle Lowry");
+        ans.add("Marc Gasol");
+        ans.add("Serge Ibaka");
+        assertEquals(text.getPlayersByTeam("Toronto Raptors"), ans);
+    }
+
+    @Test
+    public void testGETPLAYERSBYTEAMSIZE() {
+        assertEquals(text.getPlayersByTeam("Detroit Pistons").size(), 2);
+    }
+    @Test
+    public void testGetStat1() {
+        assertEquals(true, (text.getStat("PLAYER").get(0).equals("Giannis Antetokounmpo")));
+    }
+
+    @Test
+    public void testGetStat2() {
+        assertEquals(true, (text.getStat("PLAYER").get(3).equals("Stephen Curry")));
+    }
+
+    @Test
+    public void testGetRank1() {
+
+        assertEquals(true, (text.getStat("RANK").get(0).equals("1")));
+    }
+
+    @Test
+    public void testGetRank2() {
+        assertEquals(true, (text.getStat("RANK").get(3).equals("4")));
+    }
+
+    @Test
+    public void testGetPPG1() {
+        assertEquals(true, (text.getStat("PPG").get(0).equals("18.8")));
+    }
+
+    @Test
+    public void testGetPPG2() {
+
+        assertEquals(true, (text.getStat("PPG").get(1).equals("17.7")));
+    }
+
+    @Test
+    public void testGetRPG1() {
+        assertEquals(true, (text.getStat("RPG").get(0).equals("8.3")));
+    }
+
+    @Test
+    public void testGetRPG2() {
+        assertEquals(true, (text.getStat("RPG").get(1).equals("6.3")));
+    }
+
+    @Test
+    public void testGetAPG1() {
+
+        assertEquals(true, (text.getStat("APG").get(0).equals("4.1")));
+    }
+
+    @Test
+    public void testGetFGP1() {
+
+        assertEquals(true, (text.getStat("FGP").get(0).equals("52.10%")));
+    }
+
+    @Test
+    public void testGetFTP1() {
+
+        assertEquals(true, (text.getStat("FTP").get(0).equals("74.20%")));
+    }
+
+    @Test
+    public void testGetPER1() {
+        assertEquals(true, (text.getStat("PER").get(0).equals("21.9")));
+    }
+
+    @Test
+    public void testGetStatSize() {
+        assertEquals(text.getStat("PER").size(), 100);
+        assertEquals(text.getStat("FTP").size(), 100);
+        assertEquals(text.getStat("FGP").size(), 100);
+        assertEquals(text.getStat("APG").size(), 100);
+        assertEquals(text.getStat("RPG").size(), 100);
+        assertEquals(text.getStat("PPG").size(), 100);
+
+
+    }
+    @Test
+    public void textReaderGetPlayersByTeam1() {
+        ArrayList<String> ans = new ArrayList<String>();
+        ans.add("Jimmy Butler");
+        ans.add("Bam Adebayo");
+        assertEquals(text.getPlayersByTeam("Miami Heat"),ans);
+
+    }
+    @Test
+    public void textReaderGetPlayersByTeam1Size() {
+        ArrayList<String> ans = new ArrayList<String>();
+        ans.add("Jimmy Butler");
+        ans.add("Bam Adebayo");
+        assertEquals(text.getPlayersByTeam("Miami Heat").size(),2);
+
+    }
+
+    @Test
+    public void textReaderGetPlayersByTeam2Size() {
+        ArrayList<String> ans = new ArrayList<String>();
+        ans.add("Nikola Jokić");
+        ans.add("Jamal Murray");
+        ans.add("Paul Millsap");
+        ans.add("Gary Harris");
+        assertEquals(text.getPlayersByTeam("Denver Nuggets").size(),4);
+
+    }
+
+    @Test
+    public void textReaderGetPlayersByTeam2() {
+        ArrayList<String> ans = new ArrayList<String>();
+        ans.add("Nikola Jokić");
+        ans.add("Jamal Murray");
+        ans.add("Paul Millsap");
+        ans.add("Gary Harris");
+        assertEquals(text.getPlayersByTeam("Denver Nuggets"),ans);
+
+    }
+
+    @Test
+    public void textReader2() {
+        ArrayList<String> players = text.getPlayersByTeam("Miami Heat");
+        assertEquals(text.getStat("RANK").get(3),"4");
+        assertEquals(text.getStat("PPG").get(0), "18.8");
+        assertEquals(text.getStat("PPG").get(1), "17.7");
+        assertEquals(text.getStat("RPG").get(0), "8.3");
+        assertEquals(text.getStat("RPG").get(1), "6.3");
+        assertEquals(text.getStat("APG").get(0), "4.1");
+        assertEquals(text.getStat("FGP").get(0),"52.10%");
+        assertEquals(text.getStat("FTP").get(0), "74.20%");
+        assertEquals(text.getStat("PER").get(0),"21.9");
+    }
+
+    /* This is the Player Evaluator portion of the test and will test each of the
+           methods within the PlayerEvaluator class.
+     */
+    @Test
+    public void playerEvaluateSTRING() {
+
+        assertEquals(true, (playerEvaluator.evaluate("Lebron James").get(0).equals("PPG Ranking: 1")));
+        assertEquals(true, (playerEvaluator.evaluate("Lebron James").get(1).equals("RPG Ranking: 24")));
+        assertEquals(true, (playerEvaluator.evaluate("Lebron James").get(2).equals("APG Ranking: 6")));
+        assertEquals(true, (playerEvaluator.evaluate("Lebron James").get(3).equals("FGP Ranking: 21")));
+        assertEquals(true, (playerEvaluator.evaluate("Lebron James").get(4).equals("FTP Ranking: 73")));
+        assertEquals(true, (playerEvaluator.evaluate("Lebron James").get(5).equals("PER Ranking: 1")));
+
+
+    }
+
+    @Test
+    public void playerEvaluateSTRING1() {
+        //[PPG Ranking: 8, RPG Ranking: 75, APG Ranking: 15, FGP Ranking: 43, FTP Ranking: 6, PER Ranking: 12]
+
+        assertEquals((playerEvaluator.evaluate("Kyrie Irving").get(0)),"PPG Ranking: 8");
+        assertEquals((playerEvaluator.evaluate("Kyrie Irving").get(1)),"RPG Ranking: 75");
+        assertEquals((playerEvaluator.evaluate("Kyrie Irving").get(2)),"APG Ranking: 15");
+        assertEquals((playerEvaluator.evaluate("Kyrie Irving").get(3)),"FGP Ranking: 43");
+        assertEquals((playerEvaluator.evaluate("Kyrie Irving").get(4)),"FTP Ranking: 6");
+        assertEquals((playerEvaluator.evaluate("Kyrie Irving").get(5)),"PER Ranking: 12");
+
+
+    }
+
+    @Test
+    public void playerEvaluateINT1() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("PPG Ranking: 1");
+        ans.add("RPG Ranking: 24");
+        ans.add("APG Ranking: 6");
+        ans.add("FGP Ranking: 21");
+        ans.add("FTP Ranking: 73");
+        ans.add("PER Ranking: 1");
+        //[[PPG Ranking: 1, RPG Ranking: 24, APG Ranking: 6, FGP Ranking: 21, FTP Ranking: 73, PER Ranking: 1]]
+        assertEquals((playerEvaluator.evaluate(2).get(0)), ans);
+    }
+
+    @Test
+    public void playerEvaluateINT2() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("PPG Ranking: 6");
+        ans.add("RPG Ranking: 56");
+        ans.add("APG Ranking: 8");
+        ans.add("FGP Ranking: 39");
+        ans.add("FTP Ranking: 1");
+        ans.add("PER Ranking: 8");
+        //[[PPG Ranking: 1, RPG Ranking: 24, APG Ranking: 6, FGP Ranking: 21, FTP Ranking: 73, PER Ranking: 1]]
+        assertEquals((playerEvaluator.evaluate(3).get(0)), ans);
+
+
+
+    }
+
+    @Test
+    public void playerEvaluateINT3() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("PPG Ranking: 21");
+        ans.add("RPG Ranking: 61");
+        ans.add("APG Ranking: 59");
+        ans.add("FGP Ranking: 70");
+        ans.add("FTP Ranking: 74");
+        ans.add("PER Ranking: 82");
+        //[[PPG Ranking: 1, RPG Ranking: 24, APG Ranking: 6, FGP Ranking: 21, FTP Ranking: 73, PER Ranking: 1]]
+        assertEquals((playerEvaluator.evaluate(99).get(0)), ans);
+
+
+
+    }
+
+
+    @Test
+    public void statRanking1() {
+
+        assertEquals((playerEvaluator.statRanking("Lebron James", "RPG")), 24);
+        assertEquals((playerEvaluator.statRanking("Lebron James", "PPG")), 1);
+        assertEquals((playerEvaluator.statRanking("Lebron James", "APG")), 6);
+        assertEquals((playerEvaluator.statRanking("Lebron James", "FGP")), 21);
+        assertEquals((playerEvaluator.statRanking("Lebron James", "FTP")), 73);
+        assertEquals((playerEvaluator.statRanking("Lebron James", "PER")), 1);
+
+    }
+
+    // This is the Player Comparator testing portion of the test file
+
+    @Test
+    public void compareStatCategoryPPG() {
+        assertEquals((comparator.compare("Lebron James", "Blake Griffin", "PPG")), "Lebron James averages more points per game than Blake Griffin.");
+
+    }
+
+    @Test
+    public void compareStatCategoryRPG() {
+        assertEquals((comparator.compare("Lebron James", "Blake Griffin", "RPG")), "Blake Griffin averages more rebounds per game than Lebron James.");
+
+    }
+
+    @Test
+    public void compareStatCategoryAPG() {
+        assertEquals((comparator.compare("Lebron James", "Blake Griffin", "APG")), "Lebron James averages more assists per game than Blake Griffin.");
+
+    }
+    @Test
+    public void compareStatCategoryAPG1() {
+        assertEquals((comparator.compare("Kyrie Irving", "Russell Westbrook", "APG")), "Russell Westbrook averages more assists per game than Kyrie Irving.");
+
+    }
+
+    @Test
+    public void compareStatCategoryRPG2() {
+        assertEquals((comparator.compare("Kyle Lowry", "Russell Westbrook", "RPG")), "Russell Westbrook averages more rebounds per game than Kyle Lowry.");
+
+    }
+
+    // This is the Team Evaluator portion of the test file.
+
+    @Test
+    public void teamEvaluatorEvaluateSize1() {
+
+        assertEquals((teamEvaluator.evaluate("Milwaukee Bucks")).size(),4);
+
+    }
+
+    @Test
+    public void teamEvaluatorEvaluate() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("Giannis Antetokounmpo");
+        ans.add("1");
+
+        assertEquals((teamEvaluator.evaluate("Milwaukee Bucks")).get(0),ans );
+
+    }
+    @Test
+    public void teamEvaluatorEvaluate1() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("Khris Middleton");
+        ans.add("27");
+
+        assertEquals((teamEvaluator.evaluate("Milwaukee Bucks")).get(1),ans );
+
+    }
+    @Test
+    public void teamEvaluatorEvaluate2() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("Eric Bledsoe");
+        ans.add("46");
+
+        assertEquals((teamEvaluator.evaluate("Milwaukee Bucks")).get(2), ans );
+
+    }
+    @Test
+    public void teamEvaluatorEvaluate3() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("Brook Lopez");
+        ans.add("66");
+
+        assertEquals((teamEvaluator.evaluate("Milwaukee Bucks")).get(3),ans );
+
+    }
+    //[[Damian Lillard, 10], [CJ McCollum, 32], [Jusuf Nurkić, 78]] Portland Trail Blazers
+    @Test
+    public void teamEvaluatorEvaluateSize2() {
+
+        assertEquals((teamEvaluator.evaluate("Portland Trail Blazers")).size(),3);
+
+    }
+
+    @Test
+    public void teamEvaluatorEvaluate4() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("Damian Lillard");
+        ans.add("10");
+
+        assertEquals((teamEvaluator.evaluate("Portland Trail Blazers")).get(0),ans );
+
+    }
+    @Test
+    public void teamEvaluatorEvaluate5() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("CJ McCollum");
+        ans.add("32");
+
+        assertEquals((teamEvaluator.evaluate("Portland Trail Blazers")).get(1),ans );
+
+    }
+    @Test
+    public void teamEvaluatorEvaluate6() {
+        ArrayList<String> ans =new ArrayList<String>();
+        ans.add("Jusuf Nurkić");
+        ans.add("78");
+
+        assertEquals((teamEvaluator.evaluate("Portland Trail Blazers")).get(2),ans );
+
+    }
+
+
+    //This is the Team Comparator portion of the tester file. Each method of the class will be tested.
+
+    @Test
+    public void teamComparatorCompare() {
+        assertEquals(teamComparator.compare("Los Angeles Lakers", "Houston Rockets"),
+                "Likelihood of Winning\n" +
+                "-----------------------------\n" +
+                "Los Angeles Lakers: 46 %\n" +
+                "Houston Rockets: 54 %\n" +
+                "The Houston Rockets are favored to win by 8 %.");
+
+    }
+
+    @Test
+    public void teamComparatorCompare1() {
+        assertEquals(teamComparator.compare("Los Angeles Lakers", "Denver Nuggets"),
+                "Likelihood of Winning\n" +
+                        "-----------------------------\n" +
+                        "Los Angeles Lakers: 49 %\n" +
+                        "Denver Nuggets: 51 %\n" +
+                        "The Denver Nuggets are favored to win by 2 %.");
+
+    }
+    @Test
+    public void teamComparatorCompare2() {
+        assertEquals(teamComparator.compare("Los Angeles Lakers", "Toronto Raptors"),
+                "Likelihood of Winning\n" +
+                        "-----------------------------\n" +
+                        "Los Angeles Lakers: 52 %\n" +
+                        "Toronto Raptors: 48 %\n" +
+                        "The Los Angeles Lakers are favored to win by 4 %.");
+
+    }
+
+    @Test
+    public void teamComparatorCompare3() {
+        assertEquals(teamComparator.compare("Denver Nuggets", "Toronto Raptors"),
+                "Likelihood of Winning\n" +
+                        "-----------------------------\n" +
+                        "Denver Nuggets: 58 %\n" +
+                        "Toronto Raptors: 42 %\n" +
+                        "The Denver Nuggets are favored to win by 16 %.");
+
+    }
+    @Test
+    public void teamComparatorCompare4() {
+        assertEquals(teamComparator.compare("Miami Heat", "Detroit Pistons"),
+                "Likelihood of Winning\n" +
+                        "-----------------------------\n" +
+                        "Miami Heat: 45 %\n" +
+                        "Detroit Pistons: 55 %\n" +
+                        "The Detroit Pistons are favored to win by 10 %.");
+
+    }
+}
+
