@@ -8,39 +8,38 @@ public class TeamEvaluator extends Evaluator {
    //Given team name return all players on NBA Top 100 and their statistics 
    @Override
    public ArrayList evaluate(String team) {
-      //What is being returned
-      ArrayList ans = new ArrayList();
-      
-      //Access data from text document using TextReader class
-      TextReader reader = new TextReader();
-      ArrayList<String> players = new ArrayList<String>();
-      players = reader.getPlayersByTeam(team);  //Get all players on given team
-      
-      /*
-      //Loop through each player on team in the NBA Top 100
-      for(String player : players) {
-         //Create temp ArrayList to be added to answer array
-         ArrayList temp = new ArrayList();   //Temp array returns [Player Name,PPG, RPG, APG, FGP, FTP, PER]
-         temp.add(player);
-         
-         //Add each statistic type to temp array
-         for(Object stat : reader.getPlayerStat(player, "")) {
-            temp.add(stat);
-         }
-         ans.add(temp);
-      }*/
-      //return ans;
-      
-      for(String player : players) {
-         ArrayList temp = new ArrayList();
-         temp.add(player);
-         for(Object stat : reader.getPlayerStat(player, "RANK")) {
-            temp.add(stat);
-         }
-         ans.add(temp);
-      }
-      
-      return ans;
+	      //What is being returned
+	      ArrayList ans = new ArrayList();
+	      
+	      //Access data from text document using TextReader class
+	      TextReader reader = new TextReader();
+	      ArrayList<String> players = new ArrayList<String>();
+	      players = reader.getPlayersByTeam(team);  //Get all players on given team
+	      
+	      /*
+	      //Loop through each player on team in the NBA Top 100
+	      for(String player : players) {
+	         //Create temp ArrayList to be added to answer array
+	         ArrayList temp = new ArrayList();   //Temp array returns [Player Name,PPG, RPG, APG, FGP, FTP, PER]
+	         temp.add(player);
+	         
+	         //Add each statistic type to temp array
+	         for(Object stat : reader.getPlayerStat(player, "")) {
+	            temp.add(stat);
+	         }
+	         ans.add(temp);
+	      }*/
+	      //return ans;
+	      
+	      for(String player : players) {
+	         //ArrayList temp = new ArrayList();
+	         //temp.add(player);
+	         //temp.add(reader.getPlayerStat(player, "RANK"));
+	         
+	         //ans.add(temp);
+	    	  ans.add(player+": "+reader.getPlayerStat(player, "RANK"));
+	      }
+	      return ans;
    }
    
    public static void main(String [] args) {

@@ -32,16 +32,15 @@ public class TextReader {
    
    //Default TextReader constructor contains file name of where data is stored
    public TextReader() {
-      fileName = "NBATop100 - File Reader Format.txt";
+	   fileName = "src/NBATop100 - File Reader Format.txt";
    }
    
    //Returns the players on a team that are also on the NBA Top 100 list
-   public ArrayList getPlayersByTeam(String team) {
-      ArrayList ans = new ArrayList();
+   public ArrayList<String> getPlayersByTeam(String team) {
+      ArrayList<String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
-         
          //Iterate through each line in the text document and find where line equals team name
          while((line = reader.readLine()) != null) {
             if(line.equals(team)) {
@@ -49,7 +48,6 @@ public class TextReader {
                ans.add(reader.readLine());
             }
          }
-         
          //Closes Java reader to prevent data overflow
          reader.close();
          return ans;
@@ -63,8 +61,9 @@ public class TextReader {
    }
    
    //Returns a player's statistic when specified. If no statistic type is specified, return all player statistics
-   public ArrayList getPlayerStat(String player, String statType) {
-      ArrayList ans = new ArrayList();
+   
+   public String getPlayerStat(String player, String statType) {
+      String ans = "";
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -75,20 +74,20 @@ public class TextReader {
                switch(statType) {
                   //If statistic type is specified to PPG
                   case "PPG":
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                   
                   //If statistic type is specified to RPG
                   case "RPG":
                      reader.readLine();
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                      
                   //If statistic type is specified to APG
                   case "APG":
                      reader.readLine();
                      reader.readLine();
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                      
                   //If statistic type is specified to FGP
@@ -96,7 +95,7 @@ public class TextReader {
                      reader.readLine();
                      reader.readLine();
                      reader.readLine();
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                      
                   //If statistic type is specified to FTP
@@ -105,7 +104,7 @@ public class TextReader {
                      reader.readLine();
                      reader.readLine();
                      reader.readLine();
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                      
                   //If statistic type is specified to PER
@@ -115,7 +114,7 @@ public class TextReader {
                      reader.readLine();
                      reader.readLine();
                      reader.readLine();
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                      
                   //If statistic type is specified to RANK
@@ -126,13 +125,13 @@ public class TextReader {
                      reader.readLine();
                      reader.readLine();
                      reader.readLine();
-                     ans.add(reader.readLine());
+                     ans=reader.readLine();
                      break;
                                           
                   //If statistic type is unknown
                   default:
                      for(int i = 0; i <= 5; i++) {
-                        ans.add(reader.readLine());
+                    	 ans+=reader.readLine()+" ";
                      }
                }           
             }
@@ -150,9 +149,36 @@ public class TextReader {
       }   
    }
    
+   public ArrayList<String> getAllPlayerStats(String player) {
+	   ArrayList<String> stats = new ArrayList<String>();
+	      try {
+	         //Java imported reader of text documents
+	         BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
+	         
+	         //Iterate through each line in the text document and find where line equals player name
+	         while((line = reader.readLine()) != null) {
+	            if(line.equals(player)) {
+                    for(int i = 0; i <= 5; i++) {
+                   	 	stats.add(reader.readLine());
+                    }
+	            }
+	         }
+	      
+	         //Closes Java reader to prevent data overflow
+	         reader.close();
+	      }
+	      
+	      //If error in opening text document catch
+	      catch (Exception e) {
+	         System.out.println("ERROR: Cannot open file " + this.fileName);
+	         return null;
+	      }
+	   return stats;
+   }
+   
    //Return all stats of a certain type
-   public ArrayList getStat(String statType) {
-      ArrayList ans = new ArrayList();
+   public ArrayList<String> getStat(String statType) {
+      ArrayList<String> ans = new ArrayList<String>();
       try {
          //Java imported reader of text documents
          BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
@@ -315,6 +341,7 @@ public class TextReader {
             
             //If statistic type is unknown
             default:
+            	System.out.println("UNKNOWN STATISTIC TYPE");
                break;
          }
       
@@ -333,17 +360,9 @@ public class TextReader {
    public static void main(String [] args) {
       TextReader text = new TextReader();
       ArrayList<String> players = text.getPlayersByTeam("Los Angeles Lakers");
-      /*for(String player : players) {
+      for(String player : players) {
          System.out.println(player);
-         System.out.println(text.getPlayerStat(player, "RANK"));
-      }*/
-      System.out.println(text.getStat("PLAYER"));
-      System.out.println(text.getStat("RANK"));
-      System.out.println(text.getStat("PPG"));
-      System.out.println(text.getStat("RPG"));
-      System.out.println(text.getStat("APG"));
-      System.out.println(text.getStat("FGP"));
-      System.out.println(text.getStat("FTP"));
-      System.out.println(text.getStat("PER"));
+         System.out.println(text.getPlayerStat(player,""));
+      }
    }
 }
