@@ -34,14 +34,14 @@ public class TeamComparator extends Comparator{
       //ArrayList<String> playerStatArray = t.getPlayerStat(player, "RANK");
       String stringRank = t.getPlayerStat(player, "RANK"); //= playerStatArray.get(0);
       int rank = Integer.parseInt(stringRank);
-      int playerTalentScore = 1 - rank;
+      int playerTalentScore = 101 - rank;
       homeTeamTotalTalentScore += playerTalentScore;}
     
     for (String player: awayTeamPlayers){
       /*ArrayList<String>*/String playerStatArray = t.getPlayerStat(player, "RANK");
       String stringRank = playerStatArray;//playerStatArray.get(0);
       int rank = Integer.parseInt(stringRank);
-      int playerTalentScore = 1 - rank;
+      int playerTalentScore = 101 - rank;
       awayTeamTotalTalentScore += playerTalentScore;}
     
     int sum = homeTeamTotalTalentScore + awayTeamTotalTalentScore;
